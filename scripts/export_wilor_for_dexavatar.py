@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 import argparse
 import hashlib
 import json
@@ -10,7 +12,6 @@ import sys
 import time
 from pathlib import Path
 
-import cv2
 import numpy as np
 import torch
 
@@ -182,6 +183,8 @@ def chunked(iterable, size):
 
 
 def main():
+    global cv2
+
     parser = argparse.ArgumentParser(description="WiLoR -> HaMeR compatibility exporter")
     inputs = parser.add_mutually_exclusive_group(required=True)
     inputs.add_argument("--img_folder", type=str)
@@ -212,6 +215,8 @@ def main():
         help="Maximum detected hand crops per WiLoR forward pass",
     )
     args = parser.parse_args()
+    import cv2
+
     if args.frame_batch_size <= 0 or args.hand_batch_size <= 0:
         parser.error("--frame_batch_size and --hand_batch_size must be positive")
 

@@ -19,5 +19,13 @@ jobs:
         run: ruff check .
       - name: Test
         run: pytest -q
+      - name: CLI smoke tests
+        run: |
+          for command in infer prepare-manifests build-initializer prepare-wilor import-wilor merge-wilor validate-wilor export evaluate; do
+            signalign "$command" --help > /dev/null
+          done
+          for script in scripts/setup_external.py scripts/run_dexavatar_wilor.py scripts/export_wilor_for_dexavatar.py scripts/extract_wilor.py scripts/audit_release.py; do
+            python "$script" --help > /dev/null
+          done
       - name: Build distributions
         run: python -m build

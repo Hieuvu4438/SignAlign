@@ -10,7 +10,6 @@ import sys
 import time
 from pathlib import Path
 
-import cv2
 import numpy as np
 import torch
 
@@ -51,6 +50,7 @@ def main() -> None:
     parser.add_argument("--hand-batch-size", type=int, default=16)
     parser.add_argument("--rescale-factor", type=float, default=2.0)
     args = parser.parse_args()
+    import cv2
 
     repo = args.repo.resolve()
     sys.path.insert(0, str(repo))
