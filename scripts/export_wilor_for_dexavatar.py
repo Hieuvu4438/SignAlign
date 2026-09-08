@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import os
 import argparse
 import hashlib
 import json
+import os
 import pickle
 import re
 import subprocess

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import shutil
+from pathlib import Path
 
 from signalign.io.obj import load_obj, validate_mesh
 from signalign.io_utils import atomic_write_json, sha256_file

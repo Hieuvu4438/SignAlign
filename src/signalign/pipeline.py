@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 import random
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -14,7 +14,6 @@ from signalign.canonical.refinement import canonical_refit, estimate_signer_iden
 from signalign.hand.parallel import refine_hands_parallel
 from signalign.io_utils import atomic_write_json, load_config, sha256_file
 from signalign.manifest import prepare_inference_manifests
-
 
 FORBIDDEN_INFERENCE_PATHS = {
     "evaluator",

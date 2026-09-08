@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
-from pathlib import Path
 import pickle
+from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -11,7 +11,6 @@ import numpy as np
 from signalign.canonical.identity import farthest_point_indices, huber_location
 from signalign.io_utils import atomic_write_json, sha256_file
 from signalign.manifest import FrameRecord, read_jsonl
-
 
 PARAMETER_SHAPES = {
     "betas": (10,),
@@ -358,13 +357,15 @@ def canonical_refit(
                 "betas": tensor(shared_beta).expand(batch, -1),
             }
 
+            # The optimizer consumes this closure completely before the chunk
+            # loop advances, so late binding cannot cross chunk boundaries.
             def forward_vertices():
                 return model(
-                    body_pose=body_init + body_delta * body_mask,
-                    left_hand_pose=left_init + left_delta,
-                    right_hand_pose=right_init + right_delta,
+                    body_pose=body_init + body_delta * body_mask,  # noqa: B023
+                    left_hand_pose=left_init + left_delta,  # noqa: B023
+                    right_hand_pose=right_init + right_delta,  # noqa: B023
                     return_verts=True,
-                    **fixed,
+                    **fixed,  # noqa: B023
                 ).vertices
 
             with torch.no_grad():

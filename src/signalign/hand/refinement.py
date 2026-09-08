@@ -2,21 +2,20 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import shutil
-from typing import Sequence
+from collections.abc import Sequence
+from pathlib import Path
 
 import numpy as np
 import torch
 import torch.nn.functional as F
 
-from signalign.hand.model import CanonicalBatch, FrozenSMPLX, STATE_KEYS
+from signalign.hand.model import STATE_KEYS, CanonicalBatch, FrozenSMPLX
 from signalign.io.arrays import atomic_savez
 from signalign.io.obj import load_obj, write_obj
 from signalign.io_utils import atomic_write_json, sha256_file
 from signalign.manifest import HandFrameRecord, read_hand_manifest
 from signalign.model.kinematics import apply_lie_residual, so3_log_map
-
 
 SIDES = ("left", "right")
 SMPLX_HAND_JOINTS = {

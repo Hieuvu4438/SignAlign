@@ -3,15 +3,14 @@
 from __future__ import annotations
 
 import os
-from pathlib import Path
 import pickle
+from pathlib import Path
 
 import numpy as np
 
 from signalign.io.arrays import atomic_savez
 from signalign.io_utils import atomic_write_json, sha256_file
 from signalign.manifest import FrameRecord, read_jsonl
-
 
 SIDES = ("left", "right")
 REFLECT_X = np.diag([-1.0, 1.0, 1.0]).astype(np.float32)
@@ -251,7 +250,8 @@ def validate_wilor_cache(
                     if np.max(np.abs(joints[side, 0])) > 1e-6:
                         raise RuntimeError("hand is not wrist centered")
                 availability += valid
-        except Exception as error:
+        # Preserve every per-frame validation failure in one fail-closed report.
+        except Exception as error:  # noqa: BLE001
             failures.append({"record_id": _record_id(record), "error": str(error)})
     report = {
         "schema_version": "signalign.wilor-cache-validation.v1",

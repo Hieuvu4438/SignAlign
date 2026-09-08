@@ -1,7 +1,7 @@
 from dataclasses import fields
 
-from signalign.manifest import FrameRecord
 from signalign.hand.parallel import _batch_preserving_partitions
+from signalign.manifest import FrameRecord
 
 
 def test_inference_record_has_no_reference_annotation_field() -> None:

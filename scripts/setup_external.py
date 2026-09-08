@@ -5,10 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import subprocess
+from pathlib import Path
 from typing import Any
-
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCK_FILE = ROOT / "third_party.lock.json"

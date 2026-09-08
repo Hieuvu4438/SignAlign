@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import importlib.util
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from signalign.io_utils import tree_sha256
-
 
 ROOT = Path(__file__).resolve().parents[1]
 

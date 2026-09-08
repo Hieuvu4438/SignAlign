@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import os
-from pathlib import Path
 import re
 import subprocess
 import sys
+from pathlib import Path
 
 from signalign.io_utils import atomic_write_json, atomic_write_text, sha256_file
-
 
 METRIC = re.compile(
     r"\[(?P<method>[^\]]+)\]:\s+(?P<metric>[^:]+):\s+(?P<value>[0-9.+-eE]+)\s+\(mm\)"

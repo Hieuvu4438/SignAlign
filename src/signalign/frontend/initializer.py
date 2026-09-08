@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from collections import Counter
 import csv
+from collections import Counter
 from pathlib import Path
 
 from signalign.io_utils import atomic_write_json, sha256_file, tree_sha256

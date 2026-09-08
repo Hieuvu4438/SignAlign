@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
 import json
-from pathlib import Path
 import re
-from typing import Iterable
+from collections.abc import Iterable
+from dataclasses import asdict, dataclass
+from pathlib import Path
 
 from signalign.io_utils import atomic_write_json, atomic_write_text, sha256_file
-
 
 _DIGITS = re.compile(r"\d+")
 

@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Sequence
 
 import numpy as np
 import torch
 
 from signalign.model.kinematics import so3_exp_map, so3_log_map
-
 
 BOUNDARY_X180 = torch.tensor([1.0, -1.0, -1.0], dtype=torch.float32)
 STATE_KEYS = (
@@ -33,7 +32,7 @@ class CanonicalBatch:
     cached_vertices: torch.Tensor
 
     @classmethod
-    def from_npz(cls, paths: Sequence[Path], device: str) -> "CanonicalBatch":
+    def from_npz(cls, paths: Sequence[Path], device: str) -> CanonicalBatch:
         loaded: list[dict[str, np.ndarray]] = []
         for path in paths:
             with np.load(path, allow_pickle=False) as archive:

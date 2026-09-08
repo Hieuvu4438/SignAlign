@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from concurrent.futures import ProcessPoolExecutor
 import json
 import multiprocessing
 import os
-from pathlib import Path
 import shutil
 import tempfile
+from concurrent.futures import ProcessPoolExecutor
+from pathlib import Path
 from typing import Any
 
 from signalign.hand.refinement import refine_hands

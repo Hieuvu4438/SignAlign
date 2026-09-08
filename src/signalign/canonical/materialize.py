@@ -11,7 +11,6 @@ from signalign.io.obj import write_obj
 from signalign.io_utils import atomic_write_json, sha256_file
 from signalign.manifest import HandFrameRecord, read_jsonl, write_jsonl
 
-
 STATE_KEYS = (
     "betas",
     "global_orient",

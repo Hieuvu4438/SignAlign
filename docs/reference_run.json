@@ -13,7 +13,7 @@
     "hand_expert_unavailable_frames": 27,
     "hand_manifest_sha256": "0b4dc68bf4b2313380a5fdd0eb5f292cde5a75c059348908d0d01f92becb0322",
     "meshes": 1493,
-    "source_tree_sha256": "6896600ca6fb9286e7315973e4230ec551c2668e202c0a363d8965c7c78599ca",
+    "source_tree_sha256": "0c7723e2820f5049317306447e31c887d30e6c1a582040d5dd8d0e581219660f",
     "states": 1493,
     "target_paths_in_inference_config": 0
   },
