@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "SignAlign: Signer-Consistent Reconstruction and Palm-Canonical Finger Retargeting for Monocular 3D Sign Language"
+type: software
+version: 1.0.0
+date-released: 2026-09-08
+authors:
+  - family-names: Vu
+    given-names: Dinh Hieu
+    affiliation: Posts and Telecommunications Institute of Technology (PTIT)
+repository-code: "https://github.com/Hieuvu4438/SignAlign"
+license: MIT

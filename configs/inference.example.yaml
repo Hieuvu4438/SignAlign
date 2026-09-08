@@ -1,0 +1,43 @@
+seed: 20260903
+
+paths:
+  rgb_root: /path/to/rgb-sign-folders
+  signs_file: /path/to/protocol/signs.txt
+  segments_file: /path/to/protocol/segments.json
+  initializer_root: /path/to/initializer-view
+  smplx_model_root: /path/to/smplx-models
+  mano_smplx_ids: /path/to/MANO_SMPLX_vertex_ids.pkl
+  wilor_root: /path/to/wilor-cache
+  output_root: /path/to/signalign-output
+
+protocol:
+  expected_signs: 57
+  expected_frames: 1493
+
+runtime:
+  device: cuda
+  batch_size: 8
+  hand_workers: 8
+
+identity:
+  calibration_frames: 200
+  huber_delta: 1.5
+  refine_steps: 300
+  learning_rate: 0.01
+  beta_anchor_weight: 0.0
+  whole_mesh_weight: 0.02
+
+canonicalization:
+  steps: 300
+  learning_rate: 0.01
+  chunk_size: 32
+  hand_weight: 1.0
+  whole_mesh_weight: 0.02
+  pose_anchor_weight: 0.0
+  max_hand_residual_mm: 8.0
+
+hand_refinement:
+  radius_deg: 12.0
+  steps: 40
+  learning_rate: 0.03
+  residual_prior: 0.2

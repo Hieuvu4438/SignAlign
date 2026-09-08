@@ -1,0 +1,42 @@
+{
+  "schema_version": "signalign.reference-run.v1",
+  "split": {
+    "frames": 1493,
+    "signs": 57
+  },
+  "inference_audit": {
+    "accepted_hands": 2596,
+    "canonical_sequences": 57,
+    "completion_sha256": "4d5091136c40f2362da61639e73b4e27871f1a800d84de9c06f4e2b0535c9932",
+    "decision": "PASS",
+    "decisions": 1493,
+    "hand_expert_unavailable_frames": 27,
+    "hand_manifest_sha256": "0b4dc68bf4b2313380a5fdd0eb5f292cde5a75c059348908d0d01f92becb0322",
+    "meshes": 1493,
+    "source_tree_sha256": "6896600ca6fb9286e7315973e4230ec551c2668e202c0a363d8965c7c78599ca",
+    "states": 1493,
+    "target_paths_in_inference_config": 0
+  },
+  "evaluation": {
+    "predictions_frozen_before_evaluation": true,
+    "official": {
+      "artifact_sha256": "131799d63a03fa95b57daedc529177c3820450cf126438e12ab12a4c795320a1",
+      "evaluator_sha256": "2722b5cd30d4baba23599a455cab483b143e6595d292f02de9643af4eebd5300",
+      "metrics_mm": {
+        "tr_left_hand": 12.2806,
+        "tr_right_hand": 11.4150,
+        "tr_upper_body": 25.7755,
+        "tr_upper_body_minus_face": 29.0791
+      }
+    },
+    "pa_mpvpe": {
+      "artifact_sha256": "015a9474e3673eea01312f89ee01958f080112f93f82167ac1cbd8338c767440",
+      "metrics_mm": {
+        "left_hand": 8.1493,
+        "right_hand": 8.7999,
+        "upper_body": 26.4008,
+        "upper_body_minus_face": 30.1391
+      }
+    }
+  }
+}

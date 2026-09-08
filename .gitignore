@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+build/
+dist/
+.venv/
+venv/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*~
+
+# Third-party source trees (installed by scripts/setup_external.py)
+external/
+
+# Licensed model assets and checkpoints
+checkpoints/
+pretrained_models/
+models/
+body_models/
+*.ckpt
+*.pth
+*.pt
+*.onnx
+
+# Data and generated artifacts
+data/
+datasets/
+inputs/
+outputs/
+results/
+runs/
+logs/
+*.pkl
+*.npz
+*.npy
+*.obj
+*.mp4
+
+# Local configuration may contain machine-specific paths
+configs/*.local.yaml
+configs/*.local.yml
+.env
+.env.*
+!.env.example

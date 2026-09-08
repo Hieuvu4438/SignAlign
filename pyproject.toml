@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "signalign"
+version = "1.0.0"
+description = "Signer-consistent 3D sign reconstruction with palm-canonical finger retargeting"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  {name = "Dinh Hieu Vu"},
+]
+keywords = ["3d-human-reconstruction", "sign-language", "smpl-x", "hand-pose"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.24",
+  "Pillow>=10",
+  "PyYAML>=6",
+  "smplx>=0.1.28",
+  "torch>=2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2",
+  "pytest>=8",
+  "ruff>=0.6",
+]
+wilor = [
+  "opencv-python>=4.8",
+]
+
+[project.scripts]
+signalign = "signalign.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Hieuvu4438/SignAlign"
+Issues = "https://github.com/Hieuvu4438/SignAlign/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

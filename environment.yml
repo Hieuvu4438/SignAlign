@@ -1,0 +1,15 @@
+name: sign-align
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pytorch>=2.1
+  - numpy>=1.24
+  - pillow>=10
+  - pyyaml>=6
+  - pip
+  - pip:
+      - smplx>=0.1.28
+      - -e .

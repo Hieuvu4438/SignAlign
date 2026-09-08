@@ -1,0 +1,13 @@
+{
+  "schema_version": "signalign.third-party-lock.v1",
+  "dependencies": {
+    "DexAvatar": {
+      "commit": "8a03a26c3f800196efe6590be3d931fcaa0a6dd5",
+      "repository": "https://github.com/Hieuvu4438/DexAvatar.git"
+    },
+    "WiLoR": {
+      "commit": "fcb911312a38fa8badd30d9656a167485d61b8f9",
+      "repository": "https://github.com/rolpotamias/WiLoR.git"
+    }
+  }
+}
