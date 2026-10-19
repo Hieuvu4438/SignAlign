@@ -1,3 +1,4 @@
-"""SignAlign: target-free monocular sign-language mesh reconstruction."""
+"""SignAlign: signer-consistent canonicalization and bounded hand refinement."""
+from .method import Reconstruction, SignAlign, prepare_wilor_joints
 
-__version__ = "1.0.0"
+__all__ = ["Reconstruction", "SignAlign", "prepare_wilor_joints"]

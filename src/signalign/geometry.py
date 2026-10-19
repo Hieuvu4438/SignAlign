@@ -1,6 +1,40 @@
+"""SO(3) maps and the proper, scale-normalized palm coordinate frame."""
 from __future__ import annotations
 
 import torch
+
+
+def _unit(vector: torch.Tensor):
+    norm = torch.linalg.vector_norm(vector, dim=-1)
+    finite = torch.isfinite(vector).all(dim=-1) & torch.isfinite(norm)
+    safe = torch.nan_to_num(vector) / torch.nan_to_num(norm, nan=0.0).clamp_min(1e-6)[..., None]
+    return safe, finite & (norm > 1e-6)
+
+
+def palm_canonical(joints: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    """Canonicalize wrist-first thumb/index/middle/ring/little joints.
+
+    Return canonical coordinates and per-hand geometry validity. Rows are
+    points; columns of the proper palm basis are its local axes.
+    """
+    centered = joints - joints[..., :1, :]
+    finite = torch.isfinite(joints).flatten(-2).all(dim=-1)
+    transverse, transverse_valid = _unit(centered[..., 5, :] - centered[..., 17, :])
+    longitudinal_raw = 0.5 * (centered[..., 5, :] + centered[..., 17, :])
+    longitudinal, longitudinal_valid = _unit(
+        longitudinal_raw - (longitudinal_raw * transverse).sum(-1, keepdim=True) * transverse
+    )
+    normal, normal_valid = _unit(torch.cross(transverse, longitudinal, dim=-1))
+    longitudinal = torch.cross(normal, transverse, dim=-1)
+    frame = torch.stack((transverse, longitudinal, normal), dim=-1)
+    determinant = torch.det(frame)
+    scale = torch.linalg.vector_norm(centered[..., 9, :], dim=-1)
+    coordinates = torch.nan_to_num(centered) @ torch.nan_to_num(frame)
+    coordinates = coordinates / torch.nan_to_num(scale, nan=0.0).clamp_min(1e-6)[..., None, None]
+    valid = (finite & transverse_valid & longitudinal_valid & normal_valid
+             & torch.isfinite(scale) & (scale > 1e-6) & torch.isfinite(determinant)
+             & ((determinant - 1.0).abs() <= 1e-3))
+    return torch.nan_to_num(coordinates), valid
 
 
 def skew(vector: torch.Tensor) -> torch.Tensor:
@@ -54,14 +88,3 @@ def so3_log_map(rotation: torch.Tensor) -> torch.Tensor:
     if not bool(torch.isfinite(result).all()):
         raise FloatingPointError("SO(3) logarithm produced non-finite rotvec")
     return result
-
-
-def apply_lie_residual(
-    baseline_rotation: torch.Tensor,
-    delta: torch.Tensor,
-    radius_rad: torch.Tensor | float,
-) -> tuple[torch.Tensor, torch.Tensor]:
-    radius = torch.as_tensor(radius_rad, dtype=delta.dtype, device=delta.device)
-    norm = torch.linalg.vector_norm(delta, dim=-1, keepdim=True).clamp_min(1e-8)
-    bounded = delta * torch.clamp(radius / norm, max=1.0)
-    return so3_exp_map(bounded) @ baseline_rotation, bounded
